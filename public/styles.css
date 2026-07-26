@@ -315,7 +315,6 @@ main {
 .responsibility-list li { display: grid; grid-template-columns: 0.55rem 1fr; gap: 0.55rem; align-items: start; font-size: 0.92rem; line-height: 1.5; }
 .responsibility-icon { width: 0.38rem; height: 0.38rem; margin-top: 0.38rem; background: #55d7ff; border-radius: 50%; box-shadow: 0 0 0.45rem rgb(85 215 255 / 55%); }
 .experience-entry .skill-group { margin-top: 1rem; }
-.experience-entry .skill-group dd { margin: 0; }
 .experience-entry .skill-pills { display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0; margin: 0; list-style: none; }
 .experience-entry .skill-pills li { flex: 0 0 auto; padding: 0.34rem 0.6rem; font-size: 0.74rem; line-height: 1; }
 .projects-section { background: linear-gradient(135deg, rgb(145 97 255 / 18%), rgb(7 12 28 / 84%)); }
@@ -327,18 +326,17 @@ main {
 .project-template--private { background: #091526; box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%), 0 1.5rem 4rem rgb(0 0 0 / 18%); }
 .project-template--public { background: #121029; box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%), 0 1.5rem 4rem rgb(0 0 0 / 18%); }
 .project-template--drive { background: #091827; }
-.project-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.45rem; margin-bottom: 0.8rem; font: 700 0.66rem/1.2 system-ui, sans-serif; letter-spacing: 0.09em; text-transform: uppercase; }
+.project-meta { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 0.45rem; margin-bottom: 0.8rem; font: 700 0.66rem/1.2 system-ui, sans-serif; letter-spacing: 0.09em; text-transform: uppercase; }
 .project-meta > span { display: inline-flex; align-items: center; min-height: 1.7rem; padding: 0.35rem 0.55rem; }
-.project-meta__category { flex-basis: 100%; padding-left: 0 !important; color: #aebed8; }
+.project-meta__category { grid-column: 1 / -1; padding-left: 0 !important; color: #aebed8; }
 .project-meta__status { position: relative; gap: 0.45rem; color: #a9ffd0; background: rgb(72 255 156 / 10%); border: 1px solid rgb(72 255 156 / 42%); box-shadow: 0 0 1.15rem rgb(72 255 156 / 12%); }
-.project-template--private .project-meta__status { margin-right: auto; }
-.project-meta__status::before { width: 0.42rem; height: 0.42rem; content: ''; background: #48ff9c; border-radius: 50%; box-shadow: 0 0 0.65rem #48ff9c; }
-.project-meta__status:hover::before { animation: status-pulse 1s steps(24, end) infinite; }
-.project-meta__release { color: #e2caff; background: rgb(183 133 255 / 10%); border: 1px solid rgb(183 133 255 / 38%); }
+.project-template--private .project-meta__status { grid-column: 2; grid-row: 2; justify-self: end; }
+.project-meta__status::before { width: 0.42rem; height: 0.42rem; content: ''; background: #48ff9c; border-radius: 50%; box-shadow: 0 0 0.65rem #48ff9c; animation: status-pulse 1.35s ease-in-out infinite; }
+.project-meta__release { justify-self: end; color: #e2caff; background: rgb(183 133 255 / 10%); border: 1px solid rgb(183 133 255 / 38%); }
+.project-template--private .project-meta__release { grid-column: 1; grid-row: 2; justify-self: stretch; }
 .project-meta__version { color: #dfceff; background: rgb(183 133 255 / 11%); border: 1px solid rgb(183 133 255 / 42%); }
 .project-meta__release--public { gap: 0.4rem; color: #a9ffd0; background: rgb(72 255 156 / 9%); border-color: rgb(72 255 156 / 38%); }
-.project-meta__release--public::before { width: 0.38rem; height: 0.38rem; content: ''; background: #48ff9c; border-radius: 50%; box-shadow: 0 0 0.5rem rgb(72 255 156 / 75%); }
-.project-meta__release--public:hover::before { animation: status-pulse 1s steps(24, end) infinite; }
+.project-meta__release--public::before { width: 0.38rem; height: 0.38rem; content: ''; background: #48ff9c; border-radius: 50%; box-shadow: 0 0 0.5rem rgb(72 255 156 / 75%); animation: status-pulse 1.35s ease-in-out infinite; }
 .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
 .project-tags li { padding: 0.35rem 0.6rem; color: #dccaff; border: 1px solid rgb(183 133 255 / 55%); border-radius: 999px; font-size: 0.75rem; }
 .project-template > a { width: fit-content; color: #fff; font-weight: 700; text-decoration-color: #b785ff; text-underline-offset: 0.35rem; }
@@ -612,6 +610,6 @@ main {
 
 @media (prefers-reduced-motion: reduce) {
 	.skill-pills li:hover::after,
-	.project-meta__status:hover::before,
-	.project-meta__release--public:hover::before { animation: none; }
+	.project-meta__status::before,
+	.project-meta__release--public::before { animation: none; }
 }
